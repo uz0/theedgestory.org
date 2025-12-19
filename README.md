@@ -1,60 +1,56 @@
-# The Edge Story - Landing Page
+# The Edge Story
 
-🌌 Official landing page for The Edge Story - an endless story generation unit.
+*🚧 **WORK IN PROGRESS** - Transmedia storytelling universe in development*
 
-## Live Site
+## Current Status: TBD
 
-**Production**: https://theedgestory.org
+**🌌 Live Site**: https://theedgestory.org
 
-## Features
+A 13-year journey from a girl's question about green sky to a transmedia storytelling platform. Combining comics, games, and collaborative narrative in a world where the sky is green.
 
-- 🚀 Static HTML landing page
-- 📱 Fully responsive design
-- ⚡ Hosted on GitHub Pages
-- 🔒 GDPR-compliant Privacy Policy
-- 📜 Complete Terms of Service
+## Project Overview
 
-## Pages
+The Edge Story is a transmedia storytelling universe that began in 2011 with one simple question: "Why is the sky blue and not green?" This question sparked a multi-universe narrative spanning from alternative reality to post-apocalyptic future through:
 
-- **Home** (`index.html`) - Main landing page with cosmic theme
-- **Privacy Policy** (`privacy-policy.html`) - GDPR compliance
-- **Terms of Service** (`terms-of-service.html`) - Legal terms with IP ownership
+- 📚 **Comics** - Published and distributed
+- 🎮 **Games** - Interactive narrative experiences
+- 🤝 **Collaborative Storytelling** - Real-time multi-player narrative platform
+- 🌍 **Multi-Universe** - Stories across different timelines and realities
 
-## Development
+## Current Development
 
-This is a static site. To preview locally:
+We are building a transmedia multi-co-game-rpg platform that spans from our days in alternative reality to days where everything collapses, ending with a story about the last surviving girl who becomes the beginning.
+
+*The first step is always a comic :)*
+
+## Quick Start
 
 ```bash
-# Simple HTTP server (Python 3)
-python3 -m http.server 8000
+# Clone repository
+git clone https://github.com/uz0/theedgestory.org.git
+cd theedgestory.org
 
-# Or with Node.js
-npx serve .
+# Install dependencies
+npm install
+
+# Start development server with live reload
+npm start
 ```
 
-Visit: http://localhost:8000
+Visit http://localhost:3000
 
-## Deployment
+## Technology Stack
 
-Automatically deployed to GitHub Pages via GitHub Actions on every push to `main`.
+- **Frontend**: Static HTML with custom CSS
+- **Development**: Live-server with livereload
+- **Hosting**: GitHub Pages
+- **Storytelling**: 13 years of collaborative world-building
 
-## DNS Configuration
+## Connect
 
-For custom domain `theedgestory.org`:
+- **Telegram**: https://t.me/s/tedgestory
+- **Team**: [uz0.dev](https://uz0.dev/) & [dcversus.wtf](https://dcversus.wtf/)
 
-1. Add GitHub Pages A records:
-   ```
-   185.199.108.153
-   185.199.109.153
-   185.199.110.153
-   185.199.111.153
-   ```
+---
 
-2. Add CNAME for www subdomain:
-   ```
-   www  →  uz0.github.io
-   ```
-
-## License
-
-MIT License - See LICENSE file for details
+*"Как тебе такое, а?"* - The Edge Story Team
