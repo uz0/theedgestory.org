@@ -9,4 +9,4 @@
 *.log
 
 node_modules/
-.claude
+.claudenode_modules/

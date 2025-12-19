@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support The Edge Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light theme colours */
+            --bg-gradient-start: #6B2E9E;
+            --bg-gradient-mid: #7B3FA8;
+            --bg-gradient-end: #8B4FB8;
+            --text-primary: white;
+            --text-secondary: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --text-strong: white;
+            --card-bg: white;
+            --card-text: #666;
+            --card-label: #999;
+            --card-border: #e0e0e0;
+            --card-hover: #f5f5f5;
+            --button-bg: #f5f5f5;
+            --button-hover: #e8e8e8;
+            --border-quote: rgba(255, 255, 255, 0.3);
+            --quote-mark: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark theme colours */
+                --bg-gradient-start: #2E1E4A;
+                --bg-gradient-mid: #3A2559;
+                --bg-gradient-end: #462F68;
+                --text-primary: white;
+                --text-secondary: rgba(255, 255, 255, 0.85);
+                --text-muted: rgba(255, 255, 255, 0.6);
+                --text-strong: white;
+                --card-bg: #1a1a2e;
+                --card-text: #999;
+                --card-label: #777;
+                --card-border: #333;
+                --card-hover: #2a2a3e;
+                --button-bg: #2a2a3e;
+                --button-hover: #3a3a4e;
+                --border-quote: rgba(255, 255, 255, 0.2);
+                --quote-mark: rgba(255, 255, 255, 0.15);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+         html, body {
+            height: 100%;
+            overscroll-behavior: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            padding: 40px 20px;
+            transition: background 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content {
+            display: flex;
+            gap: 60px;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+        .text-section {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .description {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 15px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .description strong {
+            color: var(--text-strong);
+        }
+
+        .description p {
+            margin-bottom: 15px;
+        }
+
+        .description strong {
+            font-weight: 600;
+        }
+
+        .info-box {
+            margin-bottom: 25px;
+        }
+
+        .donations {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            flex-shrink: 0;
+            color: var(--card-text);
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .donations-label {
+            font-family: Inter, sans-serif;
+            font-weight: 500;
+            line-height: 1.3;
+            font-style: normal;
+            position: relative;
+            font-size: 15px;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+            margin-bottom: 16px;
+            color: var(--text-strong);
+        }
+
+        .icon-text-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: flex-start;
+            position: relative;
+            width: 100%;
+        }
+
+        .icon-text {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--button-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            height: auto;
+            transition: all 0.2s ease;
+            color: var(--text-muted);
+            font-family: Inter, sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 1.4;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .icon-text:hover {
+            background: var(--button-hover);
+            border-color: var(--bg-gradient-start);
+            color: var(--text-strong);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .frame1-text {
+            font-family: Inter, sans-serif;
+            line-height: 1.6;
+            font-size: 15px;
+            color: var(--text-primary);
+            margin-bottom: 0;
+        }
+
+        .quote {
+            position: relative;
+            padding-left: 24px;
+            font-style: italic;
+            margin: 30px 0;
+            border-left: 3px solid var(--border-quote);
+            color: var(--text-muted);
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .widget-card {
+            width: 280px;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            flex-shrink: 0;
+            color: var(--card-text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .widget-label {
+            color: var(--card-label);
+            transition: color 0.3s ease;
+        }
+
+        .currency-selector {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .currency-icon {
+            font-size: 12px;
+        }
+
+        .widget-amount {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .currency-symbol {
+            font-size: 18px;
+            color: var(--card-label);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .amount {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--card-text);
+            transition: color 0.3s ease;
+        }
+
+        .widget-note {
+            font-size: 12px;
+            color: var(--card-label);
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .amount-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .amount-btn {
+            background-color: var(--button-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            color: var(--card-text);
+        }
+
+        .amount-btn:hover {
+            background-color: var(--button-hover);
+            border-color: var(--card-border);
+        }
+
+        .wallet-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--button-bg);
+            border: 1px solid var(--card-border);
+            padding: 14px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+            color: var(--card-text);
+        }
+
+        .wallet-button:hover {
+            background-color: var(--button-hover);
+        }
+
+        .wallet-icon {
+            font-size: 18px;
+        }
+
+        .arrow {
+            margin-left: auto;
+            font-size: 20px;
+            color: var(--card-label);
+            transition: color 0.3s ease;
+        }
+
+        .wallet-note {
+            font-size: 11px;
+            color: var(--card-label);
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .widget-footer {
+            text-align: centre;
+            font-size: 12px;
+            color: var(--card-label);
+            padding-top: 16px;
+            border-top: 1px solid var(--card-border);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: centre;
+            font-size: 13px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+            gap: 20px;
+            transition: color 0.3s ease;
+            padding-bottom: 30px;
+        }
+
+        .footer-left {
+            display: flex;
+            gap: 20px;
+            align-items: centre;
+        }
+
+        .footer-left a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .footer-left a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 20px;
+            align-items: centre;
+        }
+
+        .footer-right a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .footer-right a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .footer-right strong {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .widget-card {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-left,
+            .footer-right {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="text-section">
+                <h1 class="title">Support Us</h1>
+
+                <div class="description">
+                    <p>
+                        We use neural networks in our development to save time
+                        and money, freeing artists from routine tasks and prioritising
+                        <strong>concepts and meanings</strong>. This is the only way we can
+                        exist - economically and carefully.
+                    </p>
+
+                    <p>
+                        <strong>Vasilisa and Dasha are the main donors of the project, they contribute
+                        $500 each month and this is sufficient for unhurried work
+                        on the project.</strong>
+                    </p>
+
+                    <p>
+                        But even $10 a month will help us achieve our goals more quickly. Every
+                        penny from our patrons will go to good use, and we in turn
+                        will listen to the community and ask for its opinions.
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <div class="quote">
+                        By supporting us, you strengthen the value of micro-communities
+                        and share the conviction that ideas and dreams are not for the desk,
+                        but for realisation in the world.
+                    </div>
+                </div>
+
+                <div class="donations">
+                    <p class="donations-label">You can donate directly to project participants</p>
+                    <div class="icon-text-grid">
+                        <a href="https://boosty.to/little0rock/donate" target="_blank" rel="noopener noreferrer" class="icon-text">
+                            Dasha
+                        </a>
+                        <a href="https://boosty.to/anahoret" target="_blank" rel="noopener noreferrer" class="icon-text">
+                            Nikita Anakhoret
+                        </a>
+                        <a href="https://boosty.to/imagin_reality" target="_blank" rel="noopener noreferrer" class="icon-text">
+                            Olga Zimovskaya
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <donation-widget recipient="0x163BF620885Dcc5c5AE53789930992535EDdC865"
+  recipient-chain-id="1"
+  recipient-token-address="0xdAC17F958D2ee523a2206206994597C13D831ec7"
+  recipient-token-symbol="USDT"
+  default-amount="10"
+  header-title="Ano"
+  theme="auto"
+  reown-project-id="2fcbf2ad4c5183f5a8b309fa05f38e31"
+  lifi-api-key="f7165556-e116-43dc-819d-ad529ebe6e2d.03384903-b036-4d59-932e-696bf42cf772"
+  style="
+      --color-background: var(--card-bg);
+      --color-foreground: var(--card-text);
+      --color-primary: var(--bg-gradient-start);
+      --color-secondary: var(--bg-gradient-mid);
+      --color-accent: var(--bg-gradient-end);
+      --color-border: var(--card-border);
+      --color-muted: var(--button-bg);
+      --color-muted-foreground: var(--card-label);
+      --radius: 0.5rem;
+      transition: all 0.3s ease;">
+</donation-widget>
+
+<script
+  src="https://cdn.donations.kalatori.org/donation-widget.v0.2.0.js"
+  integrity="sha384-7rmdrxX5/c2lvhXMSpzuVuNIgQojJpuhN8F3IMGeIegleJbYRnpOYBEMgNlHcPa+"
+  crossorigin="anonymous"
+></script>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-left">
+                <a href="/">the edge story</a>
+            </div>
+            <div class="footer-right">
+                <a href="https://uz0.dev/" target="_blank" rel="noopener noreferrer">unity zone zero</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

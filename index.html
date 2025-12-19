@@ -66,8 +66,16 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            overscroll-behavior: none;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
         }
 
         .main-container {
@@ -136,12 +144,36 @@
             overflow: hidden;
         }
 
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('/ark.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            mix-blend-mode: screen;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.7) 60%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
         .background-orbs {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 3;
         }
 
         .orb-container {
@@ -157,6 +189,8 @@
             opacity: 0.5;
             filter: blur(120px);
             border-radius: 50%;
+            transition: all 0.3s ease;
+            animation: orbBreathe1 12s ease-in-out infinite;
         }
 
         .orb-2 {
@@ -166,6 +200,8 @@
             opacity: 0.6;
             filter: blur(100px);
             border-radius: 50%;
+            transition: all 0.3s ease;
+            animation: orbBreathe2 8s ease-in-out infinite;
         }
 
         .orb-3 {
@@ -175,7 +211,8 @@
             opacity: 0.7;
             filter: blur(80px);
             border-radius: 50%;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            transition: all 0.3s ease;
+            animation: orbBreathe3 15s ease-in-out infinite;
         }
 
         .hero-content {
@@ -214,12 +251,85 @@
             color: #9ca3af;
         }
 
+        .hero-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .hero-link {
+            color: white;
+            text-decoration: underline;
+            font-family: inherit;
+            font-size: 1.5rem;
+            font-weight: normal;
+            letter-spacing: 0.1em;
+        }
+
+        @media (min-width: 768px) {
+            .hero-link {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-link {
+                font-size: 2.2rem;
+            }
+        }
+
         @keyframes pulse {
             0%, 100% {
                 opacity: 0.7;
             }
             50% {
                 opacity: 0.4;
+            }
+        }
+
+        @keyframes orbBreathe1 {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.08);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            75% {
+                transform: scale(1.03);
+            }
+        }
+
+        @keyframes orbBreathe2 {
+            0%, 100% {
+                transform: scale(1);
+            }
+            33% {
+                transform: scale(0.97);
+            }
+            66% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes orbBreathe3 {
+            0%, 100% {
+                transform: scale(1);
+            }
+            20% {
+                transform: scale(1.02);
+            }
+            40% {
+                transform: scale(0.98);
+            }
+            60% {
+                transform: scale(1.06);
+            }
+            80% {
+                transform: scale(0.96);
             }
         }
     </style>
@@ -247,9 +357,11 @@
             </div>
             <div class="hero-content">
                 <h1 class="hero-heading">
-                    <div class="hero-line">A NEW VISUAL</div>
-                    <div class="hero-line">STORYTELLING</div>
-                    <div class="hero-line hero-line-gray">EXPERIENCE</div>
+                    <div class="hero-line">New game</div>
+                    <div class="hero-links">
+                        <a href="#todo" class="hero-link">About us</a>
+                        <a href="/donate.html" class="hero-link">Support</a>
+                    </div>
                 </h1>
             </div>
         </section>
@@ -267,5 +379,91 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Interactive glow effects for background orbs
+        class OrbGlowController {
+            constructor() {
+                this.orbs = document.querySelectorAll('.orb');
+                this.heroSection = document.querySelector('.hero-section');
+                this.cursor = { x: 0, y: 0 };
+                this.scrollProgress = 0;
+                this.init();
+            }
+
+            init() {
+                // Track mouse movement
+                document.addEventListener('mousemove', (e) => {
+                    this.cursor.x = e.clientX;
+                    this.cursor.y = e.clientY;
+                });
+
+                // Track scroll position
+                document.addEventListener('scroll', () => {
+                    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    this.scrollProgress = window.scrollY / scrollHeight;
+                });
+
+                // Start animation loop
+                this.animate();
+
+                // Add natural blinking effect
+                this.startBlinking();
+            }
+
+            animate() {
+                this.orbs.forEach((orb, index) => {
+                    const rect = orb.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+
+                    // Calculate distance from cursor
+                    const distanceX = this.cursor.x - centerX;
+                    const distanceY = this.cursor.y - centerY;
+                    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                    // Cursor glow effect (stronger when closer)
+                    const cursorGlowIntensity = Math.max(0, 1 - distance / 500);
+
+                    // Scroll-based glow intensity
+                    const scrollGlowIntensity = this.scrollProgress * (index + 1) * 0.3;
+
+                    // Combine effects
+                    const totalGlowIntensity = Math.min(1, cursorGlowIntensity + scrollGlowIntensity + 0.3);
+
+                    // Apply glow effects
+                    orb.style.filter = `blur(${120 - index * 20}px) brightness(${1 + totalGlowIntensity * 0.5})`;
+                    orb.style.opacity = `${0.5 + totalGlowIntensity * 0.3}`;
+
+                    // Add subtle pulsing based on cursor proximity
+                    const pulseScale = 1 + cursorGlowIntensity * 0.05;
+                    orb.style.transform = `scale(${pulseScale})`;
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+
+            startBlinking() {
+                // Create natural blinking effect for each orb
+                this.orbs.forEach((orb, index) => {
+                    setInterval(() => {
+                        if (Math.random() > 0.7) { // 30% chance to blink
+                            orb.style.transition = 'all 0.3s ease';
+                            orb.style.opacity = '0.2';
+
+                            setTimeout(() => {
+                                orb.style.opacity = '';
+                            }, 200 + Math.random() * 300);
+                        }
+                    }, 2000 + index * 500); // Different intervals for each orb
+                });
+            }
+        }
+
+        // Initialise the glow controller when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new OrbGlowController();
+        });
+    </script>
 </body>
 </html>
